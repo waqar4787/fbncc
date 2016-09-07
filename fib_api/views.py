@@ -17,7 +17,7 @@ def fibonacci_calculation(num):
 
 
 def fib_number(request):
-    number = 0
+    num = 0
     result = 0
     time_taken = 0
 

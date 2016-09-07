@@ -2,10 +2,18 @@
 
 .fibonacci-ui {
     background: #151515;
-    height: 100%;
-    position: absolute;
+    min-height: 100%;
+    min-width: 100%;
+    /*position: absolute;
     text-align: center;
-    width: 100%;
+    width: 100%;*/
+}
+
+.fibonacci-ui .container {
+    margin: 0 auto;
+    text-align: center;
+    width: 370px;
+    padding-top: 20%;
 }
 
 .fibonacci-ui:before,
@@ -22,13 +30,13 @@
 .fibonacci-ui:before {
     background: #444;
     background: linear-gradient(left, #151515, #444, #151515);
-    top: 192px;
+    top: 320px;
 }
 
 .fibonacci-ui:after {
     background: #000;
     background: linear-gradient(left, #151515, #000, #151515);
-    top: 191px;
+    top: 319px;
 }
 
 .fibonacci-ui form {
@@ -39,7 +47,6 @@
     box-shadow: inset 0 0 0 1px #272727;
     display: inline-block;
     font-size: 0px;
-    margin: 150px auto 0;
     padding: 20px;
     position: relative;
     z-index: 1;
