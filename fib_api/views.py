@@ -9,11 +9,15 @@ from fib_api.models import FibonacciResults
 
 def fibonacci_calculation(num):
     if num < 2:
-        result = num
+        return 1
     else:
-        result = fibonacci_calculation(
-            num - 1) + fibonacci_calculation(num - 2)
-    return result
+        num_seq_1 = 1
+        num_seq_2 = 1
+        for i in range(2, num):
+            temp = num_seq_1 + num_seq_2
+            num_seq_1 = num_seq_2
+            num_seq_2 = temp
+        return num_seq_2
 
 
 def fib_number(request):
@@ -22,11 +26,12 @@ def fib_number(request):
     time_taken = 0
 
     if request.GET.get('number'):
-        start_time = time.clock()
+        start_time = time.time()
         number = request.GET.get('number')
         num = int(number)
         result = fibonacci_calculation(num)
-        time_taken = time.clock() - start_time
+        end_time = time.time() - start_time
+        time_taken = str(end_time)[0:4]
 
         obj = FibonacciResults.objects.create(
             number=num, result=result, time_taken=time_taken)

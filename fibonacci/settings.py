@@ -80,7 +80,7 @@ if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine'):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'HOST': '/cloudsqldjango-fibonacci:fibonacci-instance',
+            'HOST': '/cloudsql/django-fibonacci:fibonacci-instance',
             'NAME': 'callhub',
             'USER': 'root',
         }
