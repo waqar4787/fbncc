@@ -74,16 +74,28 @@ WSGI_APPLICATION = 'fibonacci.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'callhub',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres123',
-        'HOST': '127.0.0.1',
-        'PORT': 5432,
+import os
+if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine'):
+    # Running on production App Engine, so use a Google Cloud SQL database.
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'HOST': '/cloudsqldjango-fibonacci:fibonacci-instance',
+            'NAME': 'callhub',
+            'USER': 'root',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'callhub',
+            'USER': 'postgres',
+            'PASSWORD': 'postgres123',
+            'HOST': '127.0.0.1',
+            'PORT': 5432,
+        }
+    }
 
 
 # Password validation
@@ -122,4 +134,5 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
+STATIC_ROOT = 'static'
 STATIC_URL = '/static/'
